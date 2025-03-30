@@ -8,8 +8,13 @@ from rest_framework.generics import (
 )
 from .serializers import EventSerializer
 from .models import Event
-from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework.permissions import (
+    IsAuthenticated,
+    AllowAny,
+    IsAuthenticatedOrReadOnly,
+)
 from django.utils.timezone import now
+from .permissions import IsAuthororReadonly
 
 
 # Create your views here.
@@ -43,3 +48,9 @@ class ListUpcomingEvent(ListAPIView):
     def get_queryset(self):
         today = now().date()
         return Event.objects.filter(date__gt=today)
+
+
+class UpdateEvent(UpdateAPIView):
+    queryset = Event.objects.all()
+    serializer_class = EventSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly, IsAuthororReadonly]

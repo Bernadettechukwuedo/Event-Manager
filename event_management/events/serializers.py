@@ -20,7 +20,7 @@ class EventSerializer(serializers.ModelSerializer):
             "date",
             "time",
         ]
-        read_only_fields = ["created_by", "organizer", "created_date", "updated_date"]
+        read_only_fields = ["created_by", "created_date", "updated_date"]
 
     def validate_capacity(self, value):
         if value < 0:
