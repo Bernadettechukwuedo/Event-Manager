@@ -54,3 +54,9 @@ class UpdateEvent(UpdateAPIView):
     queryset = Event.objects.all()
     serializer_class = EventSerializer
     permission_classes = [IsAuthenticatedOrReadOnly, IsAuthororReadonly]
+
+
+class DeleteEvent(DestroyAPIView):
+    queryset = Event.objects.all()
+    serializer_class = EventSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly, IsAuthororReadonly]
