@@ -20,3 +20,8 @@ class CreateEvent(CreateAPIView):
     def perform_create(self, serializer):
         serializer.save(created_by=self.request.user)
 
+
+class ListEvent(ListAPIView):
+    queryset = Event.objects.all()
+    serializer_class = EventSerializer
+    permission_classes = [AllowAny]
