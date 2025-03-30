@@ -9,6 +9,7 @@ from rest_framework.generics import (
 from .serializers import EventSerializer
 from .models import Event
 from rest_framework.permissions import IsAuthenticated, AllowAny
+from django.utils.timezone import now
 
 
 # Create your views here.
@@ -25,3 +26,14 @@ class ListEvent(ListAPIView):
     queryset = Event.objects.all()
     serializer_class = EventSerializer
     permission_classes = [AllowAny]
+
+
+class UserListEvent(ListAPIView):
+    serializer_class = EventSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        user = self.request.user
+        return Event.objects.filter(created_by=user)
+
+
