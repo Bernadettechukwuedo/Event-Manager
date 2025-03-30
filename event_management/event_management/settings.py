@@ -138,6 +138,8 @@ REST_FRAMEWORK = {
         "rest_framework_simplejwt.authentication.JWTAuthentication",
     ),
     # Other REST framework settings
+    "TIME_FORMAT": "%I:%M %p",  # Default output format: '02:30 PM'
+    "TIME_INPUT_FORMATS": ["%H:%M:%S", "%I:%M %p"],
 }
 
 SIMPLE_JWT = {

@@ -39,7 +39,6 @@ def login_user(request):
 
 
 @api_view(["POST"])
-@authentication_classes([JWTAuthentication])
 @permission_classes([IsAuthenticated])
 def logout(request):
     serializer = LogoutSerializer(data=request.data)
