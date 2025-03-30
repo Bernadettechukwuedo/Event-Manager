@@ -37,3 +37,9 @@ class UserListEvent(ListAPIView):
         return Event.objects.filter(created_by=user)
 
 
+class ListUpcomingEvent(ListAPIView):
+    serializer_class = EventSerializer
+
+    def get_queryset(self):
+        today = now().date()
+        return Event.objects.filter(date__gt=today)
