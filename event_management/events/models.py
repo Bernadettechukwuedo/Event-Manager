@@ -17,3 +17,15 @@ class Event(models.Model):
 
     def __str__(self):
         return f"{self.title} created by {self.created_by.username} organized by {self.organizer} date: {self.date} time:{self.time}"
+
+
+class Registration(models.Model):
+    event = models.ForeignKey(Event, on_delete=models.CASCADE)
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    registered_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ("user", "event")
+
+    def __str__(self):
+        return f"{self.user.username} - {self.event.title}"

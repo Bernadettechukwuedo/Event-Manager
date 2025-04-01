@@ -6,6 +6,7 @@ from .views import (
     ListUpcomingEvent,
     UpdateEvent,
     DeleteEvent,
+
 )
 
 urlpatterns = [
@@ -15,4 +16,5 @@ urlpatterns = [
     path("upcoming/Event/", ListUpcomingEvent.as_view(), name="upcoming-event"),
     path("update/Event/<int:pk>/", UpdateEvent.as_view(), name="update-event"),
     path("delete/Event/<int:pk>/", DeleteEvent.as_view(), name="delete-event"),
+    
 ]

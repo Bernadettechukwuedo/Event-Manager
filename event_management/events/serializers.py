@@ -1,6 +1,7 @@
-from .models import Event
+from .models import Event, Registration
 from rest_framework import serializers
 import datetime
+from django.db.models import F
 
 
 class EventSerializer(serializers.ModelSerializer):
@@ -9,6 +10,7 @@ class EventSerializer(serializers.ModelSerializer):
     class Meta:
         model = Event
         fields = [
+            "id",
             "title",
             "description",
             "location",
@@ -20,7 +22,7 @@ class EventSerializer(serializers.ModelSerializer):
             "date",
             "time",
         ]
-        read_only_fields = ["created_by", "created_date", "updated_date"]
+        read_only_fields = ["id", "created_by", "created_date", "updated_date"]
 
     def validate_capacity(self, value):
         if value < 0:
@@ -31,3 +33,5 @@ class EventSerializer(serializers.ModelSerializer):
         if value <= datetime.date.today():
             raise serializers.ValidationError("The event date must be in the future.")
         return value
+
+
