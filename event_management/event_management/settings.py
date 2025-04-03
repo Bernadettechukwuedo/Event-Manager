@@ -26,7 +26,7 @@ SECRET_KEY = "django-insecure-&^$k*-cfxro&^4#^=(@&p1h9=(*4j1d(n^-49trm^1xp6##@ju
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
 
 
 # Application definition
@@ -147,3 +147,8 @@ SIMPLE_JWT = {
     "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
     # Additional settings as needed
 }
+import os
+
+STATIC_URL = "static/"
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
+
