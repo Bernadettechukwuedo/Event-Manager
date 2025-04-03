@@ -15,9 +15,11 @@ This Django-powered event application allows users to manage events by creating,
    ```
 
 ## Features
--**Apps**
-   - accounts
-   - events
+
+- **Apps**
+
+  - accounts
+  - events
 
 - **Models**
 
