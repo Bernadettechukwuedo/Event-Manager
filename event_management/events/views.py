@@ -6,7 +6,11 @@ from rest_framework.generics import (
     DestroyAPIView,
     ListAPIView,
 )
-from .serializers import EventSerializer
+from .serializers import (
+    EventSerializer,
+    RegisterEventSerializer,
+
+)
 from .models import Event, Registration
 from rest_framework.permissions import (
     IsAuthenticated,
@@ -17,6 +21,8 @@ from django.utils.timezone import now
 from .permissions import IsAuthororReadonly
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.views import APIView
+from django.db.models import F
 
 
 # Create your views here.
@@ -62,5 +68,14 @@ class DeleteEvent(DestroyAPIView):
     queryset = Event.objects.all()
     serializer_class = EventSerializer
     permission_classes = [IsAuthenticatedOrReadOnly, IsAuthororReadonly]
+
+
+class RegisterEvent(CreateAPIView):
+    serializer_class = RegisterEventSerializer
+    permission_classes = [IsAuthenticated]
+
+    def perform_create(self, serializer):
+
+        serializer.save(user=self.request.user)
 
 
