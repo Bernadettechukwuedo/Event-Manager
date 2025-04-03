@@ -52,6 +52,8 @@ class RegisterEventSerializer(serializers.ModelSerializer):
         get_event = data["event"]
         get_user = self.context["request"].user
 
+        if get_event.date <= datetime.date.today():
+            raise serializers.ValidationError("The event date must be in the future.")
         if get_event.created_by == get_user:
             raise serializers.ValidationError(
                 "You cannot register for an event you created."
@@ -77,5 +79,3 @@ class RegisterEventSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("Event is full")
 
         return Registration.objects.create(event=event, user=user)
-
-
