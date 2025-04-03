@@ -1,6 +1,6 @@
 # Event Management API
 
-This Django-powered event application allows users to manage events by creating, updating, deleting, and viewing upcoming events.
+This Django-based event management application enables users to create, update, delete, and view upcoming events. Users can also register and unregister for events, view their registered events, and manage event details.
 
 ## Installation
 
@@ -80,3 +80,7 @@ To interact with the API, you can use [Postman](https://www.postman.com/).
   "fields": "field_detail"
 }
 ```
+
+## Check it out
+
+[![Check out the app](https://img.shields.io/badge/Check%20it%20Out-Here-4CAF50?style=flat-square)](https://your-deployed-app-link.com)
