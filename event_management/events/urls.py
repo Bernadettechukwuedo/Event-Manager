@@ -8,6 +8,7 @@ from .views import (
     DeleteEvent,
     RegisterEvent,
     UnregisterEvent,
+    ListRegisteredEvent,
 )
 
 urlpatterns = [
@@ -21,4 +22,5 @@ urlpatterns = [
     path(
         "unregister/Event/<int:pk>/", UnregisterEvent.as_view(), name="unregister-event"
     ),
+    path("registeredEvent/", ListRegisteredEvent.as_view(), name="registered-event"),
 ]

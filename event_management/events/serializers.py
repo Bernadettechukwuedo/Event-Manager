@@ -79,3 +79,16 @@ class RegisterEventSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("Event is full")
 
         return Registration.objects.create(event=event, user=user)
+
+
+class RegistrationSerializer(serializers.ModelSerializer):
+    event = EventSerializer()
+
+    class Meta:
+        model = Registration
+        fields = ["user", "event"]
+
+    def to_representation(self, instance):
+        data = super().to_representation(instance)
+        data["user"] = instance.user.username
+        return data

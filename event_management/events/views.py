@@ -9,6 +9,7 @@ from rest_framework.generics import (
 from .serializers import (
     EventSerializer,
     RegisterEventSerializer,
+    RegistrationSerializer,
 )
 from .models import Event, Registration
 from rest_framework.permissions import (
@@ -101,3 +102,17 @@ class UnregisterEvent(APIView):
                 {"message": "You are not registered for this event"},
                 status=status.HTTP_400_BAD_REQUEST,
             )
+
+
+class ListRegisteredEvent(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        registered_event = Registration.objects.filter(user=request.user)
+        if not registered_event.exists():
+            return Response(
+                {"message": "No registered events"}, status=status.HTTP_200_OK
+            )
+        serializer = RegistrationSerializer(registered_event, many=True)
+
+        return Response(serializer.data, status=status.HTTP_200_OK)
