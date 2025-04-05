@@ -83,4 +83,4 @@ To interact with the API, you can use [Postman](https://www.postman.com/).
 
 ## Check it out
 
-[![Check out the app](https://img.shields.io/badge/Check%20it%20Out-Here-4CAF50?style=flat-square)](https://your-deployed-app-link.com)
+[![Check out the app](https://img.shields.io/badge/Check%20it%20Out-Here-4CAF50?style=flat-square)](https://event-manager-pr8f.onrender.com/)
